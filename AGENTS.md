@@ -23,7 +23,7 @@ This repository contains Amanda Fonseca’s bilingual portfolio, built with Reac
 
 Use TypeScript for new React code, functional components, and explicit prop types. Use two-space indentation and follow the surrounding file’s quote and semicolon conventions; existing files vary. Name reusable component files in PascalCase, such as `HoverCard.tsx`; retain existing lowercase section filenames. Keep TypeScript strict checks passing and remove unused imports and variables. No dedicated formatter is configured.
 
-Keep user-facing copy in both translation files with matching keys. Build public asset URLs using `import.meta.env.BASE_URL` so they work under the GitHub Pages `/Portifolio/` base path.
+Keep user-facing copy in both translation files with matching keys. Build public asset URLs using `import.meta.env.BASE_URL` so they work under the GitHub Pages `/Portfolio/` base path.
 
 ## Testing Guidelines
 

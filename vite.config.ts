@@ -4,9 +4,10 @@ import { sites } from '@openai/sites-vite-plugin'
 
 export default defineConfig(async () => {
   const { cloudflare } = await import('@cloudflare/vite-plugin')
+  const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'Portfolio'
 
   return {
-    base: process.env.GITHUB_ACTIONS ? '/Portifolio/' : '/',
+    base: process.env.GITHUB_ACTIONS ? `/${repositoryName}/` : '/',
     plugins: [
       react(),
       sites(),
