@@ -19,7 +19,6 @@ import {
   type Rig,
 } from "./badgePhysics";
 
-const STACK = ["React", "TypeScript", "Node.js", "NestJS", "Python", "Docker", "Tailwind CSS"];
 const STRAP_TEXT = "AMANDA FONSECA ✦ ".repeat(14);
 // passos seguidos quase parados antes de o sistema "dormir"
 const SLEEP_AFTER = 90;
@@ -259,17 +258,9 @@ export default function IdBadge() {
               className="absolute inset-0 flex flex-col items-center rounded-[20px] bg-[#111] px-7 pt-4 pb-6 text-center text-white shadow-[0_30px_70px_rgba(0,0,0,0.3)] backface-hidden transform-[rotateY(180deg)]"
             >
               <span aria-hidden="true" className="h-2 w-12 rounded-full bg-white/15" />
-              <p className="mt-8 font-body text-[10px] font-semibold uppercase tracking-[0.25em] text-[#ffd230]">{t("badge.focusLabel")}</p>
-              <p className="mt-3 font-title text-[1.6rem] leading-[1.15] text-balance">{t("badge.focus")}</p>
-              <span aria-hidden="true" className="mt-6 h-px w-10 bg-white/20" />
-              <p className="mt-6 font-body text-[10px] font-semibold uppercase tracking-[0.25em] text-[#ffd230]">{t("badge.stackLabel")}</p>
-              <ul className="mt-3 flex flex-wrap justify-center gap-2">
-                {STACK.map((tech) => (
-                  <li key={tech} className="rounded-full border border-white/25 px-3 py-1 font-body text-xs text-white/85">
-                    {tech}
-                  </li>
-                ))}
-              </ul>
+              <div className="flex flex-1 items-center justify-center py-8">
+                <p className="font-hand text-[2.5rem] leading-[1.15] text-balance text-[#ffd230]">{t("badge.motto")}</p>
+              </div>
               <div
                 aria-hidden="true"
                 className="mt-auto h-8 w-full opacity-60 [background:repeating-linear-gradient(90deg,#fff_0_2px,transparent_2px_5px,#fff_5px_6px,transparent_6px_9px)]"

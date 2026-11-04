@@ -1,14 +1,16 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, type PointerEvent } from "react";
 import { useTranslation } from "react-i18next";
-import MagneticPill from "../component/MagneticPill";
+import SkillScrollList from "../component/SkillScrollList";
 import RevealText from "../component/RevealText";
 
-const skills = ["React", "TypeScript", "Node.js", "APIs REST", "Java & Spring Boot", "Software Architecture", "AI Agents & RAG", "Product & UX"];
+// categoria de cada skill, mostrada ao lado do nome (chaves em expertise.categories)
+const categories = ["frontend", "language", "backend", "integration", "backend", "architecture", "product"];
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Skill() {
   const { t } = useTranslation();
+  const skills = ["React", "TypeScript", "Node.js", t("expertise.skills.restApis"), "Java & Spring Boot", "Software Architecture", "Product & UX"];
   const section = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: section, offset: ["start end", "end start"] });
   const auroraY = useTransform(scrollYProgress, [0, 1], [-90, 90]);
@@ -31,7 +33,7 @@ export default function Skill() {
     </div>
 
     <div className="capabilities-intro">
-      <motion.span className="section-index" initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: .6, ease }}>01 — {t("expertise.label")}</motion.span>
+      <motion.span className="section-index" initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: .6, ease }}>02 — {t("expertise.label")}</motion.span>
       <h2 ref={title}>
         <RevealText text={t("expertise.title1")} play={titleInView} />
         <br />
@@ -42,9 +44,10 @@ export default function Skill() {
           </svg>
         </em>
       </h2>
-      <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .6 }} transition={{ duration: .8, ease, delay: .45 }}>{t("expertise.description")}</motion.p>
+      <motion.p className="expertise-description" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .6 }} transition={{ duration: .8, ease, delay: .45 }}>{t("expertise.description")}</motion.p>
     </div>
 
-    <ul className="skill-cloud">{skills.map((skill, index) => <MagneticPill key={skill} label={skill} index={index} />)}</ul>
+    {/* lista que acende linha a linha com o scroll (e com o mouse, no desktop) */}
+    <SkillScrollList skills={skills.map((label, index) => ({ label, category: t(`expertise.categories.${categories[index]}`) }))} />
   </section>;
 }

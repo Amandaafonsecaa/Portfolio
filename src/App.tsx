@@ -8,8 +8,10 @@ import Formation from './pages/formation'
 import KnowMe from './pages/knowme'
 import Skill from './pages/skillpill'
 import Projects from './pages/projects'
+import { useSmoothScroll } from './hooks/useSmoothScroll'
 
 function App() {
+  useSmoothScroll()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

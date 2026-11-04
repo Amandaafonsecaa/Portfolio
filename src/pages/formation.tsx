@@ -16,13 +16,11 @@ export default function Formation() {
       year: `2023 – ${present}`,
       title: t("journey.education.degree"),
       institution: t("journey.education.institution"),
-      description: t("journey.education.description"),
     },
     {
       year: "2020 – 2023",
       title: t("journey.highschool.degree"),
       institution: t("journey.highschool.institution"),
-      description: t("journey.highschool.description"),
     },
   ];
 
@@ -52,7 +50,7 @@ export default function Formation() {
       description: t("journey.prisma.description"),
     },
     {
-      year: "2021 – 2022",
+      year: "2021",
       title: t("journey.research.title"),
       institution: t("journey.research.institution"),
       description: t("journey.research.description"),

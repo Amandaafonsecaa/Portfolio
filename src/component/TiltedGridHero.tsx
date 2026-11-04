@@ -404,23 +404,16 @@ export function TiltedGridHero({
                             animation: `${reveal} .35s ease-out`,
                           }}
                         >
-                          <p className="font-semibold leading-none tracking-[-0.04em]" style={{ fontSize: u(0.13) }}>
+                          {/* mesma linguagem do modal: título em serifa, stack em texto corrido, link sublinhado */}
+                          <p className="font-title leading-none tracking-[-0.02em]" style={{ fontSize: u(0.13) }}>
                             {item.title}
                           </p>
                           <p className="hidden leading-snug text-white/75 sm:block" style={{ fontSize: u(0.055) }}>
                             {item.description}
                           </p>
-                          <div className="hidden flex-wrap sm:flex" style={{ gap: u(0.02) }}>
-                            {item.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="rounded-full border border-white/25 font-medium uppercase tracking-[0.12em] text-white/80"
-                                style={{ fontSize: u(0.04), padding: `${u(0.008)} ${u(0.03)}` }}
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
+                          <p className="hidden truncate text-white/60 sm:block" style={{ fontSize: u(0.042) }}>
+                            {item.tags.join(", ")}
+                          </p>
                           {item.live || item.href ? (
                             <a
                               href={item.live ?? item.href ?? undefined}
@@ -428,13 +421,13 @@ export function TiltedGridHero({
                               rel="noopener noreferrer"
                               tabIndex={-1}
                               onClick={(event) => event.stopPropagation()}
-                              className="inline-flex w-max items-center rounded-full bg-[#ffd230] font-semibold text-[#111]"
-                              style={{ fontSize: u(0.05), padding: `${u(0.025)} ${u(0.05)}`, gap: u(0.025), marginTop: u(0.01) }}
+                              className="inline-flex w-max items-center font-medium text-white underline decoration-[#ffd230] underline-offset-4"
+                              style={{ fontSize: u(0.05), gap: u(0.02), marginTop: u(0.01), textDecorationThickness: "2px" }}
                             >
                               {item.live ? liveLabel : linkLabel} <span>↗</span>
                             </a>
                           ) : (
-                            <span className="font-semibold uppercase tracking-[0.14em] text-white/60" style={{ fontSize: u(0.042) }}>
+                            <span className="text-white/60" style={{ fontSize: u(0.045) }}>
                               {privateLabel}
                             </span>
                           )}

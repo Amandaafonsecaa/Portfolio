@@ -50,7 +50,7 @@ export default function KnowMe() {
             whileInView="show"
             viewport={{ once: true, amount: 0.5 }}
           >
-            {t("about.p1Start")} {highlight("about.p1Highlight")} {t("about.p1End")} {t("about.p2Start")} {highlight("about.p2Highlight")} {t("about.p2End")}
+            {t("about.p1Start")} {highlight("about.p1Highlight")} {t("about.p1End")}
           </motion.p>
 
           <motion.p
