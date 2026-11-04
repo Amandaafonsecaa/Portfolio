@@ -99,31 +99,28 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 @media(max-width:560px){.pm-head{grid-template-columns:minmax(0,1fr) auto;column-gap:10px}.pm h3{min-width:0;font-size:clamp(20px,5.5vw,28px);overflow-wrap:anywhere}.pm-links{gap:10px;font-size:12px;white-space:nowrap}.pm-links a{display:inline-flex;align-items:center;min-height:44px;gap:3px}}
 
-/* projetos no celular: uma pasta de arquivo (papel manila) com uma ficha por projeto.
-   As abas indexadas ficam no topo; a ficha ativa fica na frente e as outras aparecem pela borda, atrás */
-.pa{--pa-rule:rgba(17,17,17,.16);--pa-paper:#fbfaf6;position:relative;margin-top:30px;padding:12px 8px 18px}
-.pa-folder{position:absolute;inset:0;border-radius:0 6px 6px 6px;background:#eadfbf;border:1px solid rgba(110,90,30,.2)}
-.pa-folder-tab{position:absolute;bottom:100%;left:-1px;padding:6px 14px 5px;border:1px solid rgba(110,90,30,.2);border-bottom:0;border-radius:6px 6px 0 0;background:#eadfbf;font:500 11px/1.2 Inter,sans-serif;color:#6d5d23;white-space:nowrap}
-.pa-tabs{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:0 4px}
-.pa-tab{position:relative;z-index:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;min-width:0;min-height:52px;padding:8px 8px 12px;border:1px solid var(--pa-rule);border-bottom:0;border-radius:6px 6px 0 0;background:#efebdf;color:#6f6e66;text-align:left;cursor:pointer;transform:translateY(7px);transition:transform .35s cubic-bezier(.22,1,.36,1),background-color .3s,color .3s;-webkit-tap-highlight-color:transparent}
-.pa-tab[aria-selected=true]{z-index:2;background:var(--pa-paper);color:#111;transform:none;margin-bottom:-1px;box-shadow:inset 0 2px 0 #e5b900}
-.pa-tab:focus-visible{outline:2px solid #111;outline-offset:2px}
-.pa-tab-num{font:600 11px/1 Inter,sans-serif;font-variant-numeric:tabular-nums}.pa-tab[aria-selected=true] .pa-tab-num{color:#9a7b00}
-.pa-tab-name{max-width:100%;font:500 clamp(11.5px,3.4vw,13.5px)/1.15 Inter,sans-serif;white-space:nowrap;overflow:hidden}
-.pa-stack{position:relative;z-index:1;margin:0 4px}
-.pa-leaf{position:absolute;inset:0;border:1px solid var(--pa-rule);border-radius:0 0 4px 4px;background:#f3f0e7}.pa-leaf--1{transform:translate(4px,7px) rotate(.7deg)}.pa-leaf--2{transform:translate(-3px,12px) rotate(-.9deg);background:#efebe0}
-.pa-panel{position:relative;z-index:1}
-.pa-sheet{position:relative;z-index:1;padding:14px 14px 4px;border:1px solid var(--pa-rule);border-radius:0 0 4px 4px;background:var(--pa-paper);box-shadow:0 12px 26px -20px rgba(17,17,17,.4)}
-.pa-meta{display:flex;justify-content:space-between;margin:0 0 10px;font:500 11px/1 Inter,sans-serif;font-variant-numeric:tabular-nums;color:#8a897f}
-.pa-shot{margin:0;aspect-ratio:16/10;overflow:hidden;border:1px solid rgba(17,17,17,.12);background:#e6e5df}.pa-shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
-.pa-sheet h3{margin:16px 0 0;font:400 clamp(28px,8.6vw,36px)/1 "DM Serif Display",serif;letter-spacing:-.025em;color:#111}
-.pa-summary{display:grid;margin-top:8px}.pa-summary p{grid-area:1/1;margin:0;font:400 15px/1.5 Inter,sans-serif;color:#3a3a34;text-wrap:pretty}.pa-ghost{visibility:hidden}
-.pa-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 14px;margin-top:10px;border-top:1px solid rgba(17,17,17,.1)}
-.pa-open{min-height:48px;padding:0;border:0;background:none;color:#111;font:600 15px/1 Inter,sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}.pa-open:focus-visible{outline:none;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
-.pa-links{display:flex;gap:16px}.pa-links a{display:inline-flex;align-items:center;min-height:48px;font:500 13px/1 Inter,sans-serif;color:#55554e;text-decoration:underline;text-decoration-color:#e5b900;text-decoration-thickness:1.5px;text-underline-offset:4px}.pa-links a:focus-visible{outline:2px solid #111;outline-offset:2px}
-.pa-private{display:inline-flex;align-items:center;min-height:48px;font:400 13px/1 Inter,sans-serif;color:#8a897f}
-@media(prefers-reduced-motion:reduce){.pa-tab{transition:none}}
-@media(max-width:350px){.pa{padding-inline:5px}.pa-tabs{gap:3px;padding:0 3px}.pa-stack{margin:0 3px}.pa-tab{padding-inline:6px}.pa-tab-name{font-size:11px;letter-spacing:-.01em}.pa-sheet{padding-inline:12px}}
+/* projetos no celular: uma pasta de papel. A capa fica na frente (textura, entalhe, numeral);
+   as fichas escuras ficam dentro, espiando pela borda, e sobem em escada quando a pasta abre */
+.pa{--pa-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;position:relative;margin-top:8px;padding-top:var(--pa-rise);perspective:1100px}
+.pa-files{position:absolute;top:var(--pa-rise);left:3%;right:-2.5%;bottom:28px;margin:0;padding:0;list-style:none}
+.pa-file{position:absolute;inset:0;border-radius:14px 14px 10px 10px;background:#1f1e1b;color:#f2f0e8;box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 -10px 22px -16px rgba(0,0,0,.55)}
+.pa-file:nth-child(2){background:#1a1917}.pa-file:nth-child(3){background:#151412}
+.pa-file-hit{display:grid;grid-template-columns:62px minmax(0,1fr) 28px;grid-template-rows:auto auto;column-gap:12px;row-gap:2px;align-items:center;width:100%;height:62px;padding:9px 14px 9px 10px;border:0;background:none;color:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pa-file-hit img{grid-row:1/3;width:62px;height:42px;object-fit:cover;object-position:top;border-radius:3px;opacity:.92}
+.pa-file-num{align-self:end;font:500 10px/1 var(--pa-mono);letter-spacing:.08em;color:#a8a499}
+.pa-file-title{align-self:start;font:400 21px/1.05 "DM Serif Display",serif;letter-spacing:-.01em;white-space:nowrap;overflow:hidden}
+.pa-file-go{grid-column:3;grid-row:1/3;justify-self:end;font:400 17px/1 Inter,sans-serif;color:#e5b900}
+.pa-file-hit:focus-visible{outline:2px solid #e5b900;outline-offset:-4px;border-radius:12px}
+.pa-cover{position:relative;z-index:10;display:flex;flex-direction:column;width:100%;aspect-ratio:1/1.06;max-height:470px;padding:20px 22px 18px 26px;border:1px solid rgba(17,17,17,.13);border-radius:26px;background:#ecebe5 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");color:#111;text-align:left;cursor:pointer;transform-origin:50% 100%;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 26px 40px -30px rgba(0,0,0,.5);-webkit-mask:radial-gradient(circle 19px at 100% 25%,transparent 97%,#000 100%);mask:radial-gradient(circle 19px at 100% 25%,transparent 97%,#000 100%);-webkit-tap-highlight-color:transparent}
+.pa-cover:before{content:"";position:absolute;top:18px;bottom:18px;left:12px;width:1px;background:rgba(17,17,17,.1)}
+.pa-cover:focus-visible{outline:2px solid #111;outline-offset:4px}
+.pa-cover-label{display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid rgba(17,17,17,.14);font:500 11px/1 var(--pa-mono);letter-spacing:.06em;color:#4a4944}
+.pa-cover-num{margin-top:auto;align-self:flex-end;padding-right:6px;font:400 clamp(118px,40vw,176px)/.78 "DM Serif Display",serif;letter-spacing:-.05em;color:#111}
+.pa-cover-title{margin-top:14px;padding-top:12px;border-top:1px solid rgba(17,17,17,.14);font:400 clamp(26px,7.6vw,32px)/1 "DM Serif Display",serif;letter-spacing:-.02em}
+.pa-cover-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;font:500 10.5px/1 var(--pa-mono);letter-spacing:.06em;text-transform:uppercase;color:#55544e}
+.pa-cover-tag{padding:6px 11px;border:1px solid rgba(17,17,17,.3);border-radius:999px;color:#111}
+.pa[data-open] .pa-cover-foot>span:last-child{opacity:0;transition:opacity .2s}
+@media(max-width:350px){.pa-cover{padding:16px 18px 14px 22px}.pa-file-title{font-size:19px}}
 
 /* expertise no toque: lista tipográfica que acende linha a linha conforme o scroll */
 .skill-scroll{position:relative;z-index:1;margin:0;padding:0;list-style:none;border-top:1px solid #222}
