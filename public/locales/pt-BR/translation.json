@@ -1,5 +1,11 @@
 {
-  "loading": { "label": "Carregando portfólio" },
+  "metadata": {
+    "title": "Amanda Fonseca | Desenvolvedora full-stack",
+    "description": "Portfólio de Amanda Fonseca: desenvolvimento web full-stack, projetos selecionados e experiência profissional."
+  },
+  "loading": {
+    "label": "Carregando portfólio"
+  },
   "nav": {
     "projects": "Projetos",
     "expertise": "Expertise",
@@ -13,8 +19,13 @@
     "eyebrow": "Desenvolvedora full-stack · Fortaleza, Brasil",
     "line1": "Código que resolve,",
     "line2": "interfaces que parecem",
-    "rotating": ["únicas.", "marcantes.", "memoráveis.", "autorais."],
-    "description": "Trabalho com frontend, backend e IA. Gosto de código que aguenta crescer e de telas que se explicam sozinhas.",
+    "rotating": [
+      "únicas.",
+      "marcantes.",
+      "memoráveis.",
+      "autorais."
+    ],
+    "description": "Trabalho com frontend e backend. Gosto de código que aguenta crescer e de telas que se explicam sozinhas.",
     "projectsCta": "Ver projetos",
     "cvCta": "Baixar CV"
   },
@@ -22,7 +33,18 @@
     "label": "Expertise",
     "title1": "Penso no detalhe.",
     "title2": "Escrevo o código.",
-    "description": "Trabalho entre frontend, backend, IA e produto. Gosto de entender o problema antes da primeira linha de código e de entregar algo que funciona no mundo real, sem precisar de manual."
+    "description": "Trabalho entre frontend, backend e produto. Gosto de entender o problema antes da primeira linha de código.",
+    "categories": {
+      "frontend": "Front-end",
+      "language": "Linguagem",
+      "backend": "Back-end",
+      "integration": "Integração",
+      "architecture": "Arquitetura",
+      "product": "Produto"
+    },
+    "skills": {
+      "restApis": "APIs REST"
+    }
   },
   "projectsShowcase": {
     "label": "Projetos selecionados",
@@ -30,84 +52,58 @@
     "title2": "construí.",
     "github": "Código no GitHub",
     "live": "Ver site",
-    "private": "Projeto privado · sem repositório público",
+    "private": "Repositório privado",
     "galleryLabel": "Galeria de projetos",
+    "viewProject": "Ver projeto",
+    "archiveLabel": "Arquivo de projetos",
+    "file": "Ficha",
     "details": "Ver detalhes",
     "close": "Fechar",
     "previous": "Projeto anterior",
     "next": "Próximo projeto",
-    "about": "O que é",
-    "highlights": "O que eu fiz",
     "stack": "Stack",
-    "hint": "Clique para abrir"
+    "role": "Papel",
+    "context": "Contexto",
+    "contributions": "Contribuições",
+    "open": "Ver detalhes",
+    "githubShort": "GitHub",
+    "liveShort": "Site",
+    "privateShort": "Repositório privado"
   },
-  "hero": {
-    "smallLeft": "eu",
-    "smallRight": "sou",
-    "big": "DESENVOLVEDORA",
-    "cta": "BAIXAR MEU CV",
-    "subtitle": "Desenvolvedora full-stack"
-  },
-
-  "skills": {
-    "titleMain": "Stack",
-    "titleHighlight": "Tecnológica",
-    "titleEnd": "",
-    "stack": {
-      "react": "React",
-      "node": "Node.js",
-      "spring": "Spring Boot",
-      "fullstack": "Fullstack Dev",
-      "uiux": "UI/UX"
-    },
-    "soft": {
-      "organization": "Organização",
-      "adaptability": "Adaptabilidade",
-      "communication": "Comunicação",
-      "critical": "Pensamento Crítico"
-    }
-  },
-
   "projects": {
-    "headlineStart": "Onde isso vira",
-    "headlineHighlight": "projeto de verdade",
-    "headlineEnd": "",
-    "cta": "VER MAIS...",
     "uniquadra": {
-      "category": "Meu primeiro projeto na faculdade: um sistema para reservar quadras na Unifor.",
+      "category": "Meu primeiro projeto na faculdade: um sistema para reservar quadras na Universidade de Fortaleza (Unifor).",
       "context": "Primeiro projeto · Faculdade (Unifor)",
-      "details": "Foi meu primeiro projeto grande, feito na faculdade. A ideia era juntar num só lugar o catálogo de modalidades esportivas da Unifor, a reserva de quadras e a carteirinha digital. Cuidei do back-end em Node.js, com o código separado em classes, cada uma com uma responsabilidade clara.",
+      "role": "Back-end em Node.js",
+      "details": "O UniQuadra reúne o catálogo de modalidades esportivas da Unifor, a reserva de quadras e uma carteirinha digital.",
       "highlights": [
-        "Catálogo de modalidades e reserva de quadras",
-        "Carteirinha digital emitida pelo sistema",
-        "Back-end em Node.js com código orientado a objetos"
+        "Trabalhei no back-end em Node.js.",
+        "Separei o código em classes, cada uma com uma responsabilidade única."
       ]
     },
     "farminghabit": {
-      "category": "Um app de hábitos com cara de jogo: pixel art de fazenda, heatmap de constância e progressão que dá vontade de voltar amanhã.",
+      "category": "Um app de hábitos com cara de jogo: pixel art de fazenda, heatmap de constância e um sistema de progressão.",
       "context": "Projeto pessoal",
-      "details": "O FarmingHabit é meu: um app de hábitos com tema de RPG de fazenda. Desenhei a pixel art, montei o heatmap de constância e o sistema de progressão, e deixei login e sincronização por conta do Supabase, para a pessoa continuar de onde parou em outro aparelho.",
+      "role": "Design e desenvolvimento",
+      "details": "Meu primeiro projeto com um NPC: um app de hábitos com tema de RPG de fazenda. Com login e sincronização, a pessoa pode continuar de onde parou em outro aparelho.",
       "highlights": [
-        "Pixel art de fazenda desenhada por mim",
-        "Heatmap de constância e sistema de progressão",
-        "Login e sincronização com Supabase"
+        "Desenhei a pixel art de fazenda.",
+        "Montei o heatmap de constância e o sistema de progressão.",
+        "Implementei login e sincronização com Supabase."
       ]
     },
     "prisma": {
-      "category": "Liderei três desenvolvedoras num software de testes psicométricos (IAT) e conversei com quem usava o sistema antes de cada entrega.",
-      "context": "Liderança técnica · UNIFOR",
-      "details": "No PRISMA, um software de pesquisa com testes IAT, liderei uma equipe de três desenvolvedoras e escrevi código full-stack junto com elas. Boa parte do trabalho foi conversar com quem usaria o sistema: ouvia as dúvidas, entendia o que faltava e voltava para a equipe com o que precisava mudar antes da próxima entrega.",
+      "category": "Liderei três desenvolvedoras num software psicométrico para testes de associação implícita (IAT) e conversei com quem usava o sistema antes de cada entrega.",
+      "context": "Laboratório VORTEX · Unifor · 2025",
+      "role": "Líder da equipe de desenvolvimento",
+      "details": "O PRISMA IAT é um software psicométrico para realizar testes de associação implícita (IAT) em pesquisa e educação.",
       "highlights": [
-        "Liderança de três desenvolvedoras no full-stack",
-        "Conversas diretas com usuários para achar o que faltava",
-        "Software de pesquisa com testes IAT"
+        "Liderei uma equipe de três desenvolvedoras: defini prioridades, distribuí tarefas e acompanhei as entregas.",
+        "Escrevi código full-stack em React e TypeScript, com o back-end separado nas camadas Model, Repository e Service.",
+        "Fui o ponto de contato entre as desenvolvedoras, os docentes e o usuário solicitante."
       ]
-    },
-    "proforma": {
-      "category": "Landing page: design e código."
     }
   },
-
   "journey": {
     "present": "Atual",
     "educationLabel": "Formação",
@@ -119,61 +115,53 @@
     "microTitle": "ACADÊMICA E PROFISSIONAL",
     "education": {
       "degree": "Bacharelado em Ciência da Computação",
-      "institution": "UNIFOR",
-      "description": "Estudo IA e arquitetura de software."
+      "institution": "Unifor"
     },
     "highschool": {
-      "degree": "Ensino Médio Técnico",
-      "institution": "IFCE",
-      "description": "Redes de Computadores"
+      "degree": "Ensino Médio Técnico em Redes de Computadores",
+      "institution": "IFCE"
     },
     "nexus": {
       "title": "Bolsista de Inovação | Tech Lead Front-end",
       "institution": "Instituto Atlântico",
-      "description": "No Nexus AI, atuei como tech lead do front-end e fiz a revisão de código da equipe."
+      "description": "No Nexus AI, atuo como tech lead do front-end e faço a revisão de código da equipe."
     },
     "pet": {
       "title": "Bolsista | PET-Saúde Digital",
       "institution": "Universidade de Fortaleza (Unifor)",
-      "description": "Construo o Painel Eletrônico de Chamadas, que organiza a fila de pacientes na saúde pública."
+      "description": "Faço parte da equipe que desenvolve o Painel Eletrônico de Chamadas, que apoia o fluxo de pacientes na saúde pública."
     },
     "cosmos": {
-      "title": "Desenvolvedora Frontend | COSMOS Tech",
+      "title": "Desenvolvedora Front-end",
       "institution": "COSMOS Tech",
-      "description": "Trabalho com React e TypeScript, integro APIs REST e ajudo no full-stack de um produto com IA."
+      "description": "Trabalhei com React e TypeScript, integrei APIs REST e contribuí para o desenvolvimento full-stack do produto."
     },
     "prisma": {
-      "title": "Desenvolvedora Fullstack | PRISMA",
-      "institution": "UNIFOR",
+      "title": "Líder da Equipe de Desenvolvimento | PRISMA",
+      "institution": "Unifor",
       "description": "Liderei três desenvolvedoras e construí com elas um software psicométrico para testes IAT."
     },
     "research": {
       "title": "Bolsista de Iniciação Científica | PIBIC Jr.",
       "institution": "IFCE",
-      "description": "Usei Python e Scikit-learn para treinar modelos que identificam invasões em redes de IoT."
+      "description": "Usei Python na pesquisa sobre identificação de invasões em redes de IoT."
     }
   },
-
   "about": {
     "title": "Eu sou Amanda",
     "photoAlt": "Amanda Fonseca usando um vestido amarelo",
-    "p1Start": "Meu interesse por",
-    "p1Highlight": "frontend",
-    "p1End": "começou cedo e continua até hoje.",
-    "p2Start": "Aos 18 anos eu já fazia",
-    "p2Highlight": "landing pages",
-    "p2End": "no tempo livre, só para ver a ideia sair do papel.",
+    "p1Start": "Aos 18 anos eu já fazia",
+    "p1Highlight": "landing pages",
+    "p1End": "no tempo livre, só para tirar uma ideia do papel e colocá-la na tela.",
     "p3Start": "Agora estou me aprofundando em",
-    "p3Highlight": "IA",
+    "p3Highlight": "arquitetura de software",
     "p3End": "e venho aplicando isso no trabalho, não só nos estudos.",
-    "avatarLabel": "Retrato da Amanda em aquarela. Passe o cursor ou clique para uma surpresa."
+    "avatarLabel": "Retrato da Amanda em aquarela. Clique ou pressione Enter para uma surpresa."
   },
   "badge": {
     "name": "Amanda Fonseca",
     "role": "Desenvolvedora Full-Stack",
-    "focusLabel": "Foco",
-    "focus": "Fazer interfaces que a pessoa entende sem precisar pensar.",
-    "stackLabel": "Stack principal",
+    "motto": "Fazendo a web divertida de novo.",
     "ariaLabel": "Crachá de Amanda Fonseca. Pressione para virar."
   }
 }

@@ -2,7 +2,7 @@ export interface JourneyItem {
   year: string;
   title: string;
   institution: string;
-  description: string;
+  description?: string;
 }
 
 // folha de papel opaca sobre o quadriculado: o fundo nunca disputa com o texto
@@ -19,7 +19,7 @@ export default function JourneyCard({ year, title, institution, description }: J
       <p className="mt-1 font-body text-sm font-semibold text-[#2a2a2a]">
         <span className="bg-[linear-gradient(transparent_55%,rgba(255,210,48,0.55)_55%)] px-0.5">{institution}</span>
       </p>
-      <p className="mt-2 font-body text-sm leading-relaxed text-[#4a4a4a]">{description}</p>
+      {description && <p className="mt-2 font-body text-sm leading-relaxed text-[#4a4a4a]">{description}</p>}
     </article>
   );
 }

@@ -18,4 +18,14 @@ i18n
     }
   });
 
+function syncMetadata() {
+  document.documentElement.lang = i18n.resolvedLanguage || i18n.language;
+  document.title = i18n.t('metadata.title');
+  const description = document.querySelector('meta[name="description"]');
+  description?.setAttribute('content', i18n.t('metadata.description'));
+}
+
+i18n.on('languageChanged', syncMetadata);
+syncMetadata();
+
 export default i18n;
