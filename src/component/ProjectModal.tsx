@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion, useReducedMotion, type Variants } from "framer-motion";
+import { AnimatePresence, motion, useDragControls, useReducedMotion, type Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { FiArrowLeft, FiArrowRight, FiArrowUpRight, FiCheck, FiLock, FiX } from "react-icons/fi";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 export type ProjectDetails = {
   key: string;
@@ -36,6 +37,9 @@ const rise: Variants = {
 export default function ProjectModal({ projects, index, onChange }: Props) {
   const { t } = useTranslation();
   const reduce = useReducedMotion();
+  // no celular/tablet o modal vira uma gaveta que sobe de baixo e fecha arrastando
+  const sheet = useMediaQuery("(max-width: 900px)");
+  const drag = useDragControls();
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const open = index !== null;
@@ -110,15 +114,34 @@ export default function ProjectModal({ projects, index, onChange }: Props) {
             aria-modal="true"
             aria-labelledby="project-modal-title"
             className="project-modal"
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 40, scale: 0.97 }}
+            initial={reduce ? { opacity: 0 } : sheet ? { y: "100%" } : { opacity: 0, y: 40, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={reduce ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.98 }}
-            transition={{ duration: 0.55, ease }}
+            exit={reduce ? { opacity: 0 } : sheet ? { y: "100%" } : { opacity: 0, y: 24, scale: 0.98 }}
+            transition={{ duration: sheet ? 0.45 : 0.55, ease }}
             onClick={(event) => event.stopPropagation()}
+            // arrasto só pela alça, para não brigar com a rolagem do conteúdo
+            drag={sheet && !reduce ? "y" : false}
+            dragControls={drag}
+            dragListener={false}
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={{ top: 0, bottom: 0.6 }}
+            onDragEnd={(_, info) => {
+              if (info.offset.y > 120 || info.velocity.y > 600) onChange(null);
+            }}
           >
-            <button ref={closeRef} type="button" className="project-modal-close" onClick={() => onChange(null)} aria-label={t("projectsShowcase.close")}>
-              <FiX aria-hidden />
-            </button>
+            {/* no celular o fechar mora na alça fixa do topo, então continua visível ao rolar */}
+            {sheet ? (
+              <div className="project-modal-handle" onPointerDown={(event) => drag.start(event)}>
+                <span aria-hidden />
+                <button ref={closeRef} type="button" className="project-modal-close" onPointerDown={(event) => event.stopPropagation()} onClick={() => onChange(null)} aria-label={t("projectsShowcase.close")}>
+                  <FiX aria-hidden />
+                </button>
+              </div>
+            ) : (
+              <button ref={closeRef} type="button" className="project-modal-close" onClick={() => onChange(null)} aria-label={t("projectsShowcase.close")}>
+                <FiX aria-hidden />
+              </button>
+            )}
 
             <AnimatePresence mode="wait" initial={false}>
               <motion.div

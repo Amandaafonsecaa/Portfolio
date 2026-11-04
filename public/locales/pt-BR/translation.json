@@ -1,4 +1,5 @@
 {
+  "loading": { "label": "Carregando portfólio" },
   "nav": {
     "projects": "Projetos",
     "expertise": "Expertise",
