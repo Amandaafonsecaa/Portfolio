@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Personal bilingual (EN/PT-BR) portfolio for Amanda Fonseca: a single-page React 19 + TypeScript + Vite app styled with Tailwind v4 and animated with Framer Motion. Published at https://amandaafonsecaa.github.io/Portifolio/.
+Personal bilingual (EN/PT-BR) portfolio for Amanda Fonseca: a single-page React 19 + TypeScript + Vite app styled with Tailwind v4 and animated with Framer Motion. Published at https://amandaafonsecaa.github.io/Portfolio/.
 
 ## Commands
 
@@ -20,7 +20,7 @@ There is no test suite. Validate changes with `tsc -b`, `npm run lint` and `npm 
 
 ## Deployment
 
-- **GitHub Pages:** `.github/workflows/deploy-pages.yml` runs on every push to `main`. It builds with Node 22 and uploads `dist/client`. When `GITHUB_ACTIONS` is set, `vite.config.ts` uses `base: '/Portifolio/'`; locally the base is `/`. Reference public assets with `import.meta.env.BASE_URL` (see `src/i18n.js` and the CV link in `src/pages/banner.tsx`) so they resolve under both bases.
+- **GitHub Pages:** `.github/workflows/deploy-pages.yml` runs on every push to `main`. It builds with Node 22 and uploads `dist/client`. When `GITHUB_ACTIONS` is set, `vite.config.ts` derives the base path from `GITHUB_REPOSITORY` (currently `/Portfolio/`); locally the base is `/`. Reference public assets with `import.meta.env.BASE_URL` (see `src/i18n.js` and the CV link in `src/pages/banner.tsx`) so they resolve under both bases.
 - **Cloudflare Worker:** the `cloudflare()` and `sites()` (`@openai/sites-vite-plugin`, `.openai/hosting.json`) plugins also produce a Worker build. `worker/index.js` only serves static assets, with SPA fallback.
 
 ## Architecture
