@@ -40,7 +40,7 @@ export default function Formation() {
       description: t("journey.pet.description"),
     },
     {
-      year: `2025 – ${present}`,
+      year: "2025 – 2026",
       title: t("journey.cosmos.title"),
       institution: t("journey.cosmos.institution"),
       description: t("journey.cosmos.description"),
