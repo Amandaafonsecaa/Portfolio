@@ -3,37 +3,49 @@
     "projects": "Projects",
     "expertise": "Expertise",
     "journey": "Journey",
-    "about": "About"
+    "about": "About",
+    "primaryLabel": "Main navigation",
+    "homeLabel": "Amanda Fonseca, home",
+    "languageLabel": "Select language"
   },
   "portfolioHero": {
-    "eyebrow": "Full-Stack Developer · Fortaleza, Brazil",
-    "line1": "Clean code,",
+    "eyebrow": "Full-stack developer · Fortaleza, Brazil",
+    "line1": "Code that solves,",
     "line2": "interfaces that feel",
-    "rotating": ["alive.", "fluid.", "intuitive.", "effortless."],
-    "description": "I build digital products by combining intuitive interfaces, software engineering, and artificial intelligence.",
+    "rotating": ["bold.", "distinctive.", "memorable.", "one of a kind."],
+    "description": "I work with frontend, backend and AI. I like code that holds up as it grows and screens that explain themselves.",
     "projectsCta": "View projects",
     "cvCta": "Download CV"
   },
   "expertise": {
     "label": "Expertise",
-    "title1": "Thoughtful design.",
-    "title2": "Solid code.",
-    "description": "I work across frontend, backend, artificial intelligence, and product to create fast, accessible experiences that matter to people and businesses."
+    "title1": "I think in detail.",
+    "title2": "I write the code.",
+    "description": "I work across frontend, backend, AI and product. I like to understand the problem before the first line of code, and to ship something that works in the real world without a manual."
   },
   "projectsShowcase": {
     "label": "Selected projects",
-    "title1": "Work that blends",
-    "title2": "form and function.",
-    "github": "View code on GitHub",
-    "private": "Private project · closed source",
-    "galleryLabel": "Project gallery"
+    "title1": "Things I",
+    "title2": "actually built.",
+    "github": "Code on GitHub",
+    "live": "View live site",
+    "private": "Private project · no public repo",
+    "galleryLabel": "Project gallery",
+    "details": "View details",
+    "close": "Close",
+    "previous": "Previous project",
+    "next": "Next project",
+    "about": "What it is",
+    "highlights": "What I did",
+    "stack": "Stack",
+    "hint": "Click to open"
   },
   "hero": {
     "smallLeft": "i'm",
     "smallRight": "a",
     "big": "DEVELLLLOPER",
     "cta": "DOWNLOAD MY CV",
-    "subtitle": "Frontend-focused Developer"
+    "subtitle": "Full-stack developer"
   },
 
   "skills": {
@@ -56,21 +68,42 @@
   },
 
   "projects": {
-    "headlineStart": "These skills come to life in",
-    "headlineHighlight": "real-world",
-    "headlineEnd": "projects",
+    "headlineStart": "Where this becomes",
+    "headlineHighlight": "a real project",
+    "headlineEnd": "",
     "cta": "SEE MORE...",
     "uniquadra": {
-      "category": "Sports scheduling and management platform for Unifor, developed as a large-scale academic project, with a sports catalog and digital membership cards. Node.js back end with object-oriented architecture."
+      "category": "My first project in college: a system to book sports courts at Unifor.",
+      "context": "First project · College (Unifor)",
+      "details": "This was my first big project, built in college. The idea was to bring Unifor's sports catalog, court bookings and digital student card into one place. I worked on the Node.js back end, with the code split into classes so each one had a single job.",
+      "highlights": [
+        "Sports catalog and court bookings in one place",
+        "Digital card issued by the system",
+        "Node.js back end with object-oriented code"
+      ]
     },
     "farminghabit": {
-      "category": "Gamified habit platform with a farming RPG theme, original pixel art, consistency heatmaps, and a progression system."
+      "category": "A habit app that plays like a game: farm pixel art, a consistency heatmap and progress that makes you want to come back tomorrow.",
+      "context": "Personal project",
+      "details": "FarmingHabit is mine: a habit app with a farming RPG theme. I drew the pixel art, built the consistency heatmap and the progression system, and used Supabase for sign-in and sync so people pick up where they left off on any device.",
+      "highlights": [
+        "Farm pixel art drawn by me",
+        "Consistency heatmap and progression system",
+        "Sign-in and sync with Supabase"
+      ]
     },
-    "nexus": {
-      "category": "Front-end Tech Lead: code reviews, task allocation, and validation. Focus on front-end architecture and integration with the project’s AI."
+    "prisma": {
+      "category": "I led three developers on a psychometric (IAT) testing tool and talked to the people using it before every release.",
+      "context": "Technical leadership · UNIFOR",
+      "details": "At PRISMA, a research tool built around IAT tests, I led a team of three developers and wrote full-stack code with them. Much of the job was talking to the people who would use it: listening to their questions, working out what was missing, and bringing that back to the team before the next release.",
+      "highlights": [
+        "Led three developers through the full-stack build",
+        "Direct conversations with users to find what was missing",
+        "Research software built around IAT tests"
+      ]
     },
     "proforma": {
-      "category": "Landing page design."
+      "category": "Landing page: design and code."
     }
   },
 
@@ -86,7 +119,7 @@
     "education": {
       "degree": "B.S. in Computer Science",
       "institution": "UNIFOR",
-      "description": "Focusing on AI and Software Architecture."
+      "description": "I study AI and software architecture."
     },
      "highschool": {
       "degree": "High School Diploma",
@@ -94,51 +127,51 @@
       "description": "Computer Network"
     },
     "nexus": {
-      "title": "Innovation Fellow | Software & AI",
+      "title": "Innovation Fellow | Front-end Tech Lead",
       "institution": "Instituto Atlântico",
-      "description": "Nexus AI, intelligent agents with RAG, requirements analysis, and software solutions for industrial innovation."
+      "description": "On Nexus AI, I served as the front-end tech lead and reviewed the team’s code."
     },
     "pet": {
       "title": "Fellow | PET Digital Health",
       "institution": "University of Fortaleza (Unifor)",
-      "description": "Developing an electronic calling panel to improve patient flow in Brazil's public healthcare system."
+      "description": "I build the electronic calling panel that keeps the patient queue moving in public healthcare."
     },
     "cosmos": {
       "title": "Frontend Developer | COSMOS Tech",
       "institution": "COSMOS Tech",
-      "description": "React and TypeScript development, REST API integration, and full-stack contributions to an AI-powered product."
+      "description": "I work with React and TypeScript, connect REST APIs and help with the full-stack side of an AI product."
     },
     "prisma": {
       "title": "Fullstack Developer | PRISMA",
       "institution": "UNIFOR",
-      "description": "Led three developers and built a full-stack psychometric platform for IAT research."
+      "description": "I led three developers and built a psychometric platform for IAT research with them."
     },
     "research": {
       "title": "Scientific Research Fellow | PIBIC Jr.",
       "institution": "IFCE",
-      "description": "Machine Learning with Python and Scikit-learn for intrusion detection in IoT environments."
+      "description": "I used Python and Scikit-learn to train models that flag intrusions in IoT networks."
     }
   },
 
   "about": {
     "title": "I'm Amanda",
     "photoAlt": "Amanda Fonseca wearing a yellow dress",
-    "p1Start": "I've been deeply interested in",
-    "p1Highlight": "frontend development",
-    "p1End": "since the beginning of my journey in tech.",
-    "p2Start": "I fell in love with it instantly, and by the age of 18, I was already building",
+    "p1Start": "My interest in",
+    "p1Highlight": "frontend",
+    "p1End": "started early and is still here.",
+    "p2Start": "By 18 I was already building",
     "p2Highlight": "landing pages",
-    "p2End": "in my free time.",
-    "p3Start": "Currently, I'm expanding into the field of",
+    "p2End": "in my free time, just to see the idea leave the paper.",
+    "p3Start": "Now I'm going deeper into",
     "p3Highlight": "AI",
-    "p3End": "where I've discovered a strong affinity and growing passion.",
+    "p3End": "and applying it at work, not only in my studies.",
     "avatarLabel": "Watercolor portrait of Amanda. Hover or click for a surprise."
   },
   "badge": {
     "name": "Amanda Fonseca",
     "role": "Full-Stack Developer",
     "focusLabel": "Focus",
-    "focus": "Creative application development to delight users",
+    "focus": "Interfaces people get without having to think.",
     "stackLabel": "Core stack",
     "ariaLabel": "Amanda Fonseca's ID badge. Press to flip."
   }

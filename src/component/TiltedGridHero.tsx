@@ -119,6 +119,8 @@ export type TiltedGridProject = {
   tags: string[];
   /** Repositório no GitHub; null para projeto privado. */
   href: string | null;
+  /** Site publicado; quando existe, o card aponta para ele. */
+  live: string | null;
 };
 
 export type TiltedGridHeroProps = {
@@ -129,8 +131,12 @@ export type TiltedGridHeroProps = {
   items: TiltedGridProject[];
   /** Texto do botão do GitHub. */
   linkLabel: string;
+  /** Texto do botão quando o projeto tem site publicado. */
+  liveLabel: string;
   /** Texto exibido no lugar do botão quando o projeto é privado. */
   privateLabel: string;
+  /** Clique num tile: recebe o índice do projeto em `items`. */
+  onOpen?: (index: number) => void;
   /**
    * Seconds for the row to advance by one tile. Speed is per tile, not per
    * crossing, so a phone and an ultrawide move at the same pace.
@@ -161,7 +167,9 @@ export type TiltedGridHeroProps = {
 export function TiltedGridHero({
   items,
   linkLabel,
+  liveLabel,
   privateLabel,
+  onOpen,
   speed: speedProp = 4,
   tileHeight: tileHeightProp = 26,
   aspectRatio = 16 / 9,
@@ -198,7 +206,7 @@ export function TiltedGridHero({
   // The image each tile shows, as a position in the run of images. It
   // only changes when the tile wraps, which is out of sight, so a resize
   // never swaps an image on screen either.
-  const [shown, setShown] = React.useState<Record<number, number>>({});
+  const [shown, setShown] = React.useState<Record<string, number>>({});
 
   // tile sob o cursor; enquanto houver um, a faixa toda fica pausada
   const [active, setActive] = React.useState<number | null>(null);
@@ -298,14 +306,21 @@ export function TiltedGridHero({
         }}
       >
         {Array.from({ length: columns }, (_, t) => {
+          // Cada tile tem sua própria animação CSS, e o espaçamento só fica
+          // certo se todas começarem no mesmo instante. Quando o layout muda
+          // (resize, barra de rolagem, primeira medição), tiles novos nasceriam
+          // fora de fase com os antigos e encostariam uns nos outros. A chave
+          // por layout remonta a faixa inteira junta, reiniciando todas em sincronia.
+          const slot = `${columns}:${sweep}:${unit}:${duration}:${flat ? 1 : 0}:${t}`;
           // Tile `columns - 1` starts nearest the exit and tile 0 furthest
           // back, so this numbers tiles in the order they come on.
           const first = columns - 1 - t;
-          const item = items[(shown[t] ?? first) % Math.max(items.length, 1)];
+          const itemIndex = (shown[slot] ?? first) % Math.max(items.length, 1);
+          const item = items[itemIndex];
           const isActive = active === t;
           return (
             <div
-              key={t}
+              key={slot}
               className={cn(tile, "absolute")}
               style={{
                 left: `calc(50% - ${u(aspectRatio / 2)})`,
@@ -321,12 +336,18 @@ export function TiltedGridHero({
                 const lap = Math.round(e.elapsedTime / duration);
                 setShown((prev) => {
                   const next = lap * columns + first;
-                  return prev[t] === next ? prev : { ...prev, [t]: next };
+                  return prev[slot] === next ? prev : { ...prev, [slot]: next };
                 });
               }}
               onMouseEnter={() => setActive(t)}
               onMouseLeave={() => setActive(null)}
-              onClick={() => setActive(isActive ? null : t)}
+              onClick={() => {
+                // com onOpen, o clique abre o modal de detalhes do projeto
+                if (onOpen && item) {
+                  setActive(null);
+                  onOpen(itemIndex);
+                } else setActive(isActive ? null : t);
+              }}
             >
               {Array.from({ length: SLICES }, (_, k) => (
                 <div
@@ -400,9 +421,9 @@ export function TiltedGridHero({
                               </span>
                             ))}
                           </div>
-                          {item.href ? (
+                          {item.live || item.href ? (
                             <a
-                              href={item.href}
+                              href={item.live ?? item.href ?? undefined}
                               target="_blank"
                               rel="noopener noreferrer"
                               tabIndex={-1}
@@ -410,7 +431,7 @@ export function TiltedGridHero({
                               className="inline-flex w-max items-center rounded-full bg-[#ffd230] font-semibold text-[#111]"
                               style={{ fontSize: u(0.05), padding: `${u(0.025)} ${u(0.05)}`, gap: u(0.025), marginTop: u(0.01) }}
                             >
-                              {linkLabel} <span>↗</span>
+                              {item.live ? liveLabel : linkLabel} <span>↗</span>
                             </a>
                           ) : (
                             <span className="font-semibold uppercase tracking-[0.14em] text-white/60" style={{ fontSize: u(0.042) }}>
