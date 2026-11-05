@@ -1,7 +1,8 @@
+import type { CSSProperties } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import type { JourneyItem } from "../component/JourneyCard";
-import JourneyTimeline from "../component/JourneyTimeline";
+import JourneyMap, { type JourneyMilestone } from "../component/JourneyMap";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 import iconAcademic from "../assets/icon/iconAcademic.png";
 import iconWork from "../assets/icon/iconWork.png";
 
@@ -10,51 +11,18 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function Formation() {
   const { t } = useTranslation();
   const present = t("journey.present");
+  // celular: rota estreita à esquerda e descrições que expandem ao toque
+  const compact = useMediaQuery("(max-width: 767px)");
 
-  const educationData: JourneyItem[] = [
-    {
-      year: `2023 – ${present}`,
-      title: t("journey.education.degree"),
-      institution: t("journey.education.institution"),
-    },
-    {
-      year: "2020 – 2023",
-      title: t("journey.highschool.degree"),
-      institution: t("journey.highschool.institution"),
-    },
-  ];
-
-  const workData: JourneyItem[] = [
-    {
-      year: `2026 – ${present}`,
-      title: t("journey.nexus.title"),
-      institution: t("journey.nexus.institution"),
-      description: t("journey.nexus.description"),
-    },
-    {
-      year: `2026 – ${present}`,
-      title: t("journey.pet.title"),
-      institution: t("journey.pet.institution"),
-      description: t("journey.pet.description"),
-    },
-    {
-      year: "2025 – 2026",
-      title: t("journey.cosmos.title"),
-      institution: t("journey.cosmos.institution"),
-      description: t("journey.cosmos.description"),
-    },
-    {
-      year: "2025",
-      title: t("journey.prisma.title"),
-      institution: t("journey.prisma.institution"),
-      description: t("journey.prisma.description"),
-    },
-    {
-      year: "2021",
-      title: t("journey.research.title"),
-      institution: t("journey.research.institution"),
-      description: t("journey.research.description"),
-    },
+  // mesmos dados de antes, agora numa lista só; "start" é o ano de início real de cada marco
+  const milestones: JourneyMilestone[] = [
+    { kind: "education", start: 2023, year: `2023 – ${present}`, title: t("journey.education.degree"), institution: t("journey.education.institution") },
+    { kind: "education", start: 2020, year: "2020 – 2023", title: t("journey.highschool.degree"), institution: t("journey.highschool.institution") },
+    { kind: "work", start: 2026, year: `2026 – ${present}`, title: t("journey.nexus.title"), institution: t("journey.nexus.institution"), description: t("journey.nexus.description") },
+    { kind: "work", start: 2026, year: `2026 – ${present}`, title: t("journey.pet.title"), institution: t("journey.pet.institution"), description: t("journey.pet.description") },
+    { kind: "work", start: 2025, year: "2025 – 2026", title: t("journey.cosmos.title"), institution: t("journey.cosmos.institution"), description: t("journey.cosmos.description") },
+    { kind: "work", start: 2025, year: "2025", title: t("journey.prisma.title"), institution: t("journey.prisma.institution"), description: t("journey.prisma.description") },
+    { kind: "work", start: 2021, year: "2021", title: t("journey.research.title"), institution: t("journey.research.institution"), description: t("journey.research.description") },
   ];
 
   return (
@@ -62,6 +30,14 @@ export default function Formation() {
       {/* papel quadriculado + margem de caderno */}
       <div aria-hidden="true" className="journey-grid" />
       <div aria-hidden="true" className="journey-margin" />
+      {/* desfoque suave no fim da página, preparando a transição para a onda preta.
+          O build (lightningcss) descarta o "backdrop-filter" padrão e mantém só o -webkit-,
+          então aplicamos os dois via style inline, fora do alcance do minificador de CSS. */}
+      <div
+        aria-hidden="true"
+        className="journey-fade"
+        style={{ backdropFilter: "blur(38px)", WebkitBackdropFilter: "blur(38px)" } as CSSProperties}
+      />
 
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center px-6 md:pl-24">
         {/* Microtítulo */}
@@ -97,11 +73,13 @@ export default function Formation() {
           {t("journey.titleD")}
         </motion.h2>
 
-        {/* Colunas */}
-        <div className="flex w-full flex-col items-start gap-14 md:flex-row md:gap-12">
-          <JourneyTimeline label={t("journey.educationLabel")} icon={iconAcademic} items={educationData} />
-          <JourneyTimeline label={t("journey.workLabel")} icon={iconWork} items={workData} />
-        </div>
+        {/* mapa: uma rota ligando formação e experiência em ordem cronológica */}
+        <JourneyMap
+          milestones={milestones}
+          compact={compact}
+          labels={{ education: t("journey.educationLabel"), work: t("journey.workLabel") }}
+          icons={{ education: iconAcademic, work: iconWork }}
+        />
       </div>
     </section>
   );
