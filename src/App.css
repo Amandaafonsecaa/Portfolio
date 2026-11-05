@@ -83,7 +83,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .pm-close{display:grid;place-items:center;width:44px;height:44px;margin:-12px -12px -12px 0;padding:0;border:0;background:none;color:#111;font:400 18px/1 Inter,sans-serif;cursor:pointer;align-self:center;transition:color .2s}.pm-close:hover{color:#111}
 /* composição assimétrica: coluna larga com print + ficha, coluna estreita com o texto; cabe numa tela de notebook */
 .pm{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);grid-template-areas:"head head" "shot text" "facts text" "nav nav";grid-template-rows:auto auto 1fr auto}
+.pm-body{display:contents}
 .pm-head{grid-area:head}
+.pm-head{padding-right:calc(var(--pm-x) + 44px + 14px)}
+.pm-close{position:absolute;top:10px;right:var(--pm-x);margin:0}
 .pm-shot{grid-area:shot;margin:28px 0 0 var(--pm-x);max-height:min(46vh,430px);overflow:hidden;border-radius:2px;background:#e6e5df;box-shadow:0 0 0 1px var(--pm-rule)}.pm-shot img{display:block;width:100%;height:auto}
 .pm-shot[data-tall]{overflow-y:auto;overscroll-behavior:contain}.pm-shot[data-tall] img{width:min(100%,560px);margin:0 auto}
 .pm-facts{grid-area:facts;display:grid;grid-template-columns:1fr 1.15fr 1.35fr;gap:0 20px;align-self:start;margin:22px 0 32px var(--pm-x)}.pm-facts div{padding-top:11px;border-top:1px solid var(--pm-rule)}
@@ -98,6 +101,21 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media(max-width:900px){.project-modal-backdrop{place-items:end center;padding:0}.project-modal{width:100%;max-height:92dvh;border-radius:10px 10px 0 0}.pm-handle{display:flex;justify-content:center;padding:8px 0 0;background:#f5f5f2;touch-action:none;cursor:grab}.pm-handle span{width:36px;height:4px;border-radius:2px;background:rgba(17,17,17,.22)}.pm{grid-template-columns:1fr;grid-template-areas:"head" "shot" "facts" "text" "nav";grid-template-rows:none}.pm-head{grid-template-columns:1fr auto;grid-template-areas:"idx close" "title links";row-gap:2px;padding:6px var(--pm-x) 12px}.pm-index{grid-area:idx;align-self:center}.pm-close{grid-area:close}.pm h3{grid-area:title;font-size:28px}.pm-links{grid-area:links;gap:16px}.pm-shot{margin:16px var(--pm-x) 0;max-height:34dvh}.pm-facts{grid-template-columns:1fr 1fr;row-gap:12px;margin:18px var(--pm-x) 0}.pm-facts div:last-child{grid-column:1/-1}.pm-text{padding:24px var(--pm-x) 28px}.pm-lede{font-size:15.5px;margin-bottom:22px}.pm-nav{padding-bottom:calc(14px + env(safe-area-inset-bottom))}.pm-nav-name{display:none}.pm-nav button{min-width:44px;justify-content:center}.pm-nav button span{font-size:26px;color:#111}}
 
 @media(max-width:560px){.pm-head{grid-template-columns:minmax(0,1fr) auto;column-gap:10px}.pm h3{min-width:0;font-size:clamp(20px,5.5vw,28px);overflow-wrap:anywhere}.pm-links{gap:10px;font-size:12px;white-space:nowrap}.pm-links a{display:inline-flex;align-items:center;min-height:44px;gap:3px}}
+
+/* A gaveta mantém cabeçalho e navegação fora da única região de rolagem. */
+@media(max-width:900px){
+  .project-modal{display:flex;flex-direction:column;height:92dvh;max-height:calc(100dvh - env(safe-area-inset-top,0px));overflow:hidden}
+  .pm-handle{flex:none}
+  .pm{display:flex;flex:1;flex-direction:column;min-height:0;overflow:hidden;--pm-x:max(clamp(20px,3.4vw,44px),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))}
+  .pm-head{position:relative;flex:none}
+  .pm-close{top:0;right:var(--pm-x)}
+  .pm-index{display:flex;align-items:center;min-height:44px;padding-right:44px}
+  .pm-body{display:block;flex:1;min-height:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain}
+  .pm-shot[data-tall]{max-height:34dvh;overflow-y:auto;overscroll-behavior:contain}
+  .pm-nav{flex:none;background:#f5f5f2;padding:8px var(--pm-x) calc(8px + env(safe-area-inset-bottom,0px))}
+  .pm-nav button{display:flex;flex:1;align-items:center;gap:8px;min-width:0;min-height:44px}
+  .pm-nav .pm-nav-name{display:none}
+}
 
 /* projetos no celular: uma pasta de papel. A capa fica na frente (textura, entalhe, numeral);
    as fichas escuras ficam dentro, espiando pela borda, e sobem em escada quando a pasta abre */
