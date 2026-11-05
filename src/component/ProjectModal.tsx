@@ -59,15 +59,24 @@ export default function ProjectModal({ projects, index, onChange }: Props) {
     };
   }, [open]);
 
+  // Os controles persistem ao trocar de projeto; se o conteúdo focado saiu, volta ao fechar.
+  useEffect(() => {
+    if (open && panelRef.current && !panelRef.current.contains(document.activeElement)) {
+      closeRef.current?.focus({ preventScroll: true });
+    }
+  }, [index, open]);
+
   // teclado: Esc fecha, setas trocam de projeto, Tab fica preso dentro do modal
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") onChange(null);
-      else if (event.key === "ArrowRight") go(1);
-      else if (event.key === "ArrowLeft") go(-1);
+      else if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+        event.preventDefault();
+        go(event.key === "ArrowRight" ? 1 : -1);
+      }
       else if (event.key === "Tab" && panelRef.current) {
-        const focusable = panelRef.current.querySelectorAll<HTMLElement>("a[href],button:not([disabled])");
+        const focusable = panelRef.current.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])');
         if (!focusable.length) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
@@ -128,29 +137,37 @@ export default function ProjectModal({ projects, index, onChange }: Props) {
           >
             {sheet && <div className="pm-handle" onPointerDown={(event) => drag.start(event)} aria-hidden><span /></div>}
 
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.article
+            <motion.article
+              className="pm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {/* cabeçalho: índice, título e links como texto, sem pílulas */}
+              <header className="pm-head">
+                <span className="pm-index" aria-hidden>{pad(index! + 1)}<small>/{pad(total)}</small></span>
+                <h3 id="project-modal-title">{project.title}</h3>
+                <nav className="pm-links" aria-label={project.title}>
+                  {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer">{t("projectsShowcase.liveShort")}<span aria-hidden> ↗</span></a>}
+                  {project.repo && <a href={project.repo} target="_blank" rel="noopener noreferrer">{t("projectsShowcase.githubShort")}<span aria-hidden> ↗</span></a>}
+                  {!project.live && !project.repo && <span className="pm-muted">{t("projectsShowcase.privateShort")}</span>}
+                </nav>
+                <button ref={closeRef} type="button" className="pm-close" onClick={() => onChange(null)} aria-label={t("projectsShowcase.close")}>
+                  <span aria-hidden>✕</span>
+                </button>
+              </header>
+
+              <motion.div
                 key={project.key}
-                className="pm"
+                className="pm-body"
+                tabIndex={sheet ? 0 : undefined}
+                role={sheet ? "region" : undefined}
+                aria-labelledby={sheet ? "project-modal-title" : undefined}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: reduce ? 0 : 0.2 }}
               >
-                {/* cabeçalho: índice, título e links como texto, sem pílulas */}
-                <header className="pm-head">
-                  <span className="pm-index" aria-hidden>{pad(index! + 1)}<small>/{pad(total)}</small></span>
-                  <h3 id="project-modal-title">{project.title}</h3>
-                  <nav className="pm-links" aria-label={project.title}>
-                    {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer">{t("projectsShowcase.liveShort")}<span aria-hidden> ↗</span></a>}
-                    {project.repo && <a href={project.repo} target="_blank" rel="noopener noreferrer">{t("projectsShowcase.githubShort")}<span aria-hidden> ↗</span></a>}
-                    {!project.live && !project.repo && <span className="pm-muted">{t("projectsShowcase.privateShort")}</span>}
-                  </nav>
-                  <button ref={closeRef} type="button" className="pm-close" onClick={() => onChange(null)} aria-label={t("projectsShowcase.close")}>
-                    <span aria-hidden>✕</span>
-                  </button>
-                </header>
-
                 {/* o print abre a coluna larga, na proporção original e com altura limitada; prints altos rolam dentro da janela */}
                 <figure className="pm-shot" tabIndex={0} aria-label={project.title}>
                   <img
@@ -182,20 +199,20 @@ export default function ProjectModal({ projects, index, onChange }: Props) {
                     </section>
                   )}
                 </div>
+              </motion.div>
 
-                {/* navegação editorial: nomes dos vizinhos, não só setas */}
-                {total > 1 && prev && next && (
-                  <footer className="pm-nav">
-                    <button type="button" onClick={() => go(-1)} aria-label={`${t("projectsShowcase.previous")}: ${prev.title}`}>
-                      <span aria-hidden>←</span> <span className="pm-nav-name">{prev.title}</span>
-                    </button>
-                    <button type="button" onClick={() => go(1)} aria-label={`${t("projectsShowcase.next")}: ${next.title}`}>
-                      <span className="pm-nav-name">{next.title}</span> <span aria-hidden>→</span>
-                    </button>
-                  </footer>
-                )}
-              </motion.article>
-            </AnimatePresence>
+              {/* navegação editorial: nomes dos vizinhos, não só setas */}
+              {total > 1 && prev && next && (
+                <footer className="pm-nav">
+                  <button type="button" onClick={() => go(-1)} aria-label={`${t("projectsShowcase.previous")}: ${prev.title}`}>
+                    <span aria-hidden>←</span> <span className="pm-nav-name">{prev.title}</span>
+                  </button>
+                  <button type="button" onClick={() => go(1)} aria-label={`${t("projectsShowcase.next")}: ${next.title}`}>
+                    <span className="pm-nav-name">{next.title}</span> <span aria-hidden>→</span>
+                  </button>
+                </footer>
+              )}
+            </motion.article>
           </motion.div>
         </motion.div>
       )}

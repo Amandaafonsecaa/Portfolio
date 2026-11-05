@@ -10,9 +10,9 @@ import prismaImg from "../assets/prisma-fullscreen.png";
 import uniquadraImg from "../assets/uniquadra.png";
 
 const projects: ProjectDetails[] = [
-  { title: "UniQuadra", key: "uniquadra", image: uniquadraImg, tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "Node.js"], repo: "https://github.com/Amandaafonsecaa/UniQuadra", live: null },
   { title: "FarmingHabit", key: "farminghabit", image: farmingHabitImg, tags: ["React 19", "Tailwind CSS v4", "NestJS", "Swagger", "Supabase Auth/Sync", "Docker"], repo: "https://github.com/Amandaafonsecaa/FarmingHabit", live: "https://farming-habit.vercel.app/" },
   { title: "PRISMA", key: "prisma", image: prismaImg, tags: ["React", "TypeScript"], repo: null, live: null },
+  { title: "UniQuadra", key: "uniquadra", image: uniquadraImg, tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "Node.js"], repo: "https://github.com/Amandaafonsecaa/UniQuadra", live: null },
 ];
 
 export default function Projects() {
