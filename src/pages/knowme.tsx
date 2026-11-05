@@ -26,12 +26,12 @@ export default function KnowMe() {
   const highlight = (key: string) => <span className="font-medium text-[#ffd230]">{t(key)}</span>;
 
   return (
-    <section id="sobre" className="relative w-full overflow-hidden bg-[#0a0909] pb-24 md:pb-32">
+    <section id="sobre" className="relative -mt-[2px] w-full overflow-hidden bg-[#0a0909] pb-24 md:pb-32">
       {/* ONDA: continua o papel da Trajetória */}
-      <div className="absolute top-0 left-0 z-0 w-full leading-none">
+      <div className="absolute -top-px left-0 z-0 w-full leading-none">
         <svg className="block w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
           <path
-            fill="#fbfbf7"
+            fill="#fff"
             d="M0,32L120,58.7C240,85,480,139,720,160C960,181,1200,171,1320,165.3L1440,160L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"
           />
         </svg>
@@ -50,7 +50,7 @@ export default function KnowMe() {
             whileInView="show"
             viewport={{ once: true, amount: 0.5 }}
           >
-            {t("about.p1Start")} {highlight("about.p1Highlight")} {t("about.p1End")} {t("about.p2Start")} {highlight("about.p2Highlight")} {t("about.p2End")}
+            {t("about.p1Start")} {highlight("about.p1Highlight")} {t("about.p1End")}
           </motion.p>
 
           <motion.p

@@ -1,6 +1,6 @@
 # Amanda Fonseca — Portfolio
 
-Portfólio pessoal de Amanda Fonseca, desenvolvedora full-stack com foco em frontend, backend e inteligência artificial.
+Portfólio pessoal de Amanda Fonseca, desenvolvedora full-stack com foco em frontend e backend.
 
 O projeto reúne trabalhos selecionados, competências técnicas, trajetória acadêmica e experiência profissional em uma interface editorial, responsiva e bilíngue (português e inglês).
 

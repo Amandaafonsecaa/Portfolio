@@ -9,7 +9,7 @@ Personal bilingual (EN/PT-BR) portfolio for Amanda Fonseca: a single-page React 
 ```bash
 npm install
 npm run dev      # Vite dev server (runs inside the Cloudflare Workers runtime via @cloudflare/vite-plugin)
-npm run build    # clean dist → tsc -b → vite build → renames dist/portifolio to dist/server
+npm run build    # clean dist → tsc -b → vite build → renames dist/portfolio (package name) to dist/server
 npm run lint     # ESLint (flat config, TS + react-hooks + react-refresh)
 npm run preview
 ```

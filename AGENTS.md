@@ -15,7 +15,7 @@ This repository contains Amanda Fonseca’s bilingual portfolio, built with Reac
 
 - `npm install` installs dependencies; keep `package-lock.json` synchronized with intentional dependency changes.
 - `npm run dev` starts the Vite development server.
-- `npm run build` clears `dist/`, runs TypeScript project checks, builds production assets, and moves `dist/portifolio` to `dist/server`.
+- `npm run build` clears `dist/`, runs TypeScript project checks, builds production assets, and moves the generated Worker directory (`dist/portfolio`, matching `package.json`'s `name`) to `dist/server`.
 - `npm run lint` runs ESLint, including TypeScript, React Hooks, and React Refresh rules.
 - `npm run preview` starts Vite’s production preview server.
 
